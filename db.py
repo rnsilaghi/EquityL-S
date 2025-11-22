@@ -52,9 +52,7 @@ def create_tables():
         CREATE TABLE IF NOT EXISTS interest_rates (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             date TEXT UNIQUE,
-            effr REAL,
-            treasury_10y REAL,
-            baa_yield REAL
+            treasury_10y REAL
         )
     """)
 
