@@ -9,16 +9,15 @@ def fetch_stock_prices(ticker: str, filing_date: str) -> List[Dict]:
         return []
 
     end_date = datetime.fromisoformat(filing_date)
-    start_date = end_date - timedelta(days=90)
+    start_date = end_date - timedelta(days=365)
 
-    url = f"{STOCKDATA_BASE_URL}/financials/history"
+    url = f"{STOCKDATA_BASE_URL}/data/eod"
     
     params = {
         "api_token": STOCKDATA_API_KEY,
-        "symbol": ticker,
-        "period": "1day",
-        "start": start_date.strftime("%Y-%m-%d"),
-        "end": filing_date,
+        "symbols": ticker,
+        "date_from": start_date.strftime("%Y-%m-%d"),
+        "date_to": filing_date,
     }
 
     response = requests.get(url, params=params)
