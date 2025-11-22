@@ -39,6 +39,7 @@ def create_tables():
             high REAL,
             low REAL,
             volume INTEGER,
+            UNIQUE(company_id, date),   -- ⭐ prevents duplicates
             FOREIGN KEY (company_id) REFERENCES companies(id)
         )
     """)
