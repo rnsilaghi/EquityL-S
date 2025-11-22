@@ -47,9 +47,9 @@ def create_tables():
         CREATE TABLE IF NOT EXISTS interest_rates (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             date TEXT,
-            effr REAL,             -- Effective Federal Funds Rate
-            treasury_10y REAL,     -- 10-Year Treasury yield
-            baa_yield REAL         -- BAA corporate bond yield (if used)
+            effr REAL,
+            treasury_10y REAL,
+            baa_yield REAL
         )
     """)
 
