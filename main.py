@@ -55,10 +55,10 @@ def main():
     load_sec_data(limit=50)
 
     # B) Fetch stock prices for companies already in DB
-    load_stock_data()
+    #load_stock_data()
 
     # C) Fetch interest-rate history (only 10Y)
-    #load_interest_rate_data(start_years_back=5, max_rows=99999)
+    load_interest_rate_data(start_years_back=5, max_rows=99999)
 
     print("🎉 main.py finished. Uncomment steps to run specific loads.")
 
