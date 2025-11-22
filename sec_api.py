@@ -23,6 +23,9 @@ def fetch_sec_filings(limit: int = 100) -> List[Dict]:
     filings: List[Dict] = []
 
     for item in data.get("filings", []):
+        description = item.get("formDescription", "").lower() 
+        if "convertible preferred" in description:
+            continue 
         filings.append({
             "cik": item.get("cik"),
             "company_name": item.get("companyName"),
