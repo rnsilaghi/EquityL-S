@@ -12,7 +12,7 @@ def create_tables():
     # --- COMPANIES ---
     cur.execute("""
         CREATE TABLE IF NOT EXISTS companies (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             cik TEXT UNIQUE,
             name TEXT UNIQUE,
             ticker TEXT UNIQUE
@@ -22,7 +22,7 @@ def create_tables():
     # --- FILINGS ---
     cur.execute("""
         CREATE TABLE IF NOT EXISTS filings (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             company_id INTEGER,
             filing_date TEXT,
             filing_type TEXT,
@@ -35,7 +35,7 @@ def create_tables():
     # --- STOCK PRICES ---
     cur.execute("""
         CREATE TABLE IF NOT EXISTS stock_prices (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             company_id INTEGER,
             date TEXT,
             close REAL,
@@ -50,7 +50,7 @@ def create_tables():
     # --- INTEREST RATES ---
     cur.execute("""
         CREATE TABLE IF NOT EXISTS interest_rates (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             date TEXT UNIQUE,
             treasury_10y REAL
         )
