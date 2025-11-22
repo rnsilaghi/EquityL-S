@@ -1,7 +1,7 @@
 from db import create_tables, get_connection
 from sec_api import fetch_sec_filings, store_sec_filings_to_db
 from stock_api import fetch_stock_prices, store_stock_prices_to_db
-from fred_api import fetch_interest_rates, store_interest_rates_to_db
+from fred_api import fetch_treasury_10y, store_treasury_10y_to_db
 
 def load_sec_data(limit: int = 25):
     print(f"Fetching up to {limit} SEC filings...")
@@ -15,7 +15,7 @@ def load_stock_data():
     cur = conn.cursor()
 
     cur.execute("""
-        SELECT DISTINCT c.id, c.ticker, MIN(f.filing_date)
+        SELECT DISTI bNCT c.id, c.ticker, MIN(f.filing_date)
         FROM companies c
         JOIN filings f ON c.id = f.company_id
         WHERE c.ticker IS NOT NULL
@@ -34,8 +34,8 @@ def load_stock_data():
 
 def load_interest_rate_data(start_date: str, end_date: str, max_rows: int = 25):
     print(f"Fetching up to {max_rows} interest-rate observations from {start_date} to {end_date}...")
-    rates = fetch_interest_rates(start_date=start_date, end_date=end_date, max_rows=max_rows)
-    store_interest_rates_to_db(rates)
+    rates = fetch_treasury_10y(start_date=start_date, end_date=end_date, max_rows=max_rows)
+    store_treasury_10y_to_db(rates)
     print(f"Inserted {len(rates)} interest-rate rows.")
 
 
@@ -46,7 +46,7 @@ def main():
     # 2. Uncomment the pieces you want to run in a given execution
 
     # Step A: Load SEC data (max 25 filings per run)
-    # load_sec_data(limit=25)
+    load_sec_data(limit=25)
 
     # Step B: Load stock data for companies already in DB
     # load_stock_data()
