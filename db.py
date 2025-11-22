@@ -9,31 +9,27 @@ def create_tables():
     conn = get_connection()
     cur = conn.cursor()
 
-    # --- COMPANIES ---
     cur.execute("""
         CREATE TABLE IF NOT EXISTS companies (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             cik TEXT UNIQUE,
-            name TEXT UNIQUE,
-            ticker TEXT UNIQUE
+            name TEXT,
+            ticker TEXT
         )
     """)
 
-    # --- FILINGS ---
     cur.execute("""
         CREATE TABLE IF NOT EXISTS filings (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             company_id INTEGER,
             filing_date TEXT,
             filing_type TEXT,
-            filing_url TEXT UNIQUE,
+            filing_url TEXT,
             is_convertible INTEGER, -- 0 or 1
-            FOREIGN KEY (company_id) REFERENCES companies(id),
-            UNIQUE(company_id, filing_date, filing_type)
+            FOREIGN KEY (company_id) REFERENCES companies(id)
         )
     """)
 
-    # --- STOCK PRICES ---
     cur.execute("""
         CREATE TABLE IF NOT EXISTS stock_prices (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,16 +39,15 @@ def create_tables():
             high REAL,
             low REAL,
             volume INTEGER,
-            FOREIGN KEY (company_id) REFERENCES companies(id),
-            UNIQUE(company_id, date)
+            UNIQUE(company_id, date),   -- ⭐ prevents duplicates
+            FOREIGN KEY (company_id) REFERENCES companies(id)
         )
     """)
 
-    # --- INTEREST RATES ---
     cur.execute("""
         CREATE TABLE IF NOT EXISTS interest_rates (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            date TEXT UNIQUE,
+            date TEXT,
             effr REAL,
             treasury_10y REAL,
             baa_yield REAL
@@ -65,3 +60,5 @@ def create_tables():
 if __name__ == "__main__":
     create_tables()
     print("Tables created successfully.")
+
+#Framework for the database is complete

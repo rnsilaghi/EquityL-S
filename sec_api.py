@@ -5,7 +5,7 @@ from db import get_connection
 
 def fetch_sec_filings(limit: int = 25) -> List[Dict]:
     if not SEC_API_KEY or SEC_API_KEY.startswith("YOUR_"):
-        raise ValueError("⚠️ SEC_API_KEY missing in config.py")
+        raise ValueError("SEC_API_KEY missing in config.py")
 
     url = f"{SEC_BASE_URL}?token={SEC_API_KEY}"
 
