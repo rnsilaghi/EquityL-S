@@ -29,7 +29,7 @@ def fetch_sec_filings(limit: int = 25) -> List[Dict]:
         filings.append({
             "cik": item.get("cik"),
             "company_name": item.get("companyName"),
-            "ticker": item.get("ticker"),
+            "ticker": item.get("ticker"),       
             "filing_date": item.get("filedAt", "")[:10],
             "filing_type": item.get("formType"),
             "filing_url": item.get("linkToHtml"),
