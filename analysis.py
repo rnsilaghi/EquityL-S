@@ -386,3 +386,30 @@ def write_summary_to_file(bucket_counts, stock_results, ym_counts,
             f.write("   No filings aggregated by month.\n\n")
 
     print(f"Summary written to {filename}")
+
+# =========================================
+# ============== MAIN =====================
+# =========================================
+
+def main():
+    # 1) Filings by rate bucket
+    bucket_counts = calculate_filings_by_rate_bucket()
+    print("Filings by rate bucket:", bucket_counts)
+    plot_filings_by_rate_bucket(bucket_counts)
+
+    # 2) Stock performance vs rate
+    stock_results = calculate_stock_window_returns()
+    print(f"Computed stock-window returns for {len(stock_results)} filings.")
+    plot_return_vs_rate(stock_results)
+
+    # 3) Filings per month
+    ym_counts = calculate_filings_per_month()
+    print("Filings per month:", ym_counts)
+    plot_filings_over_time(ym_counts)
+
+    # 4) Write summary to text file (bonus + report helper)
+    write_summary_to_file(bucket_counts, stock_results, ym_counts)
+
+
+if __name__ == "__main__":
+    main()
