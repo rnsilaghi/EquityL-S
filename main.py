@@ -30,15 +30,15 @@ def load_stock_data():
     conn.close()
 
     for company_id, ticker, filing_date in rows:
-        print(f"📈 Fetching stock prices for {ticker} (company_id={company_id})...")
+        print(f"Fetching stock prices for {ticker} (company_id={company_id})...")
         prices = fetch_stock_prices(ticker, filing_date)
         store_stock_prices_to_db(company_id, prices)
-        print(f"✔ Saved {len(prices)} daily price records.\n")
+        print(f"Saved {len(prices)} daily price records.\n")
 
 
 # ========== FRED ==========
 def load_interest_rate_data(start_years_back: int = 10, max_rows: int = 50):
-    print(f"\n📊 Fetching up to {max_rows} Treasury 10Y interest rates...")
+    print(f"\nFetching up to {max_rows} Treasury 10Y interest rates...")
     rates = fetch_treasury_10y(start_years_back=start_years_back, max_rows=max_rows)
     store_treasury_10y_to_db(rates)
     print(f"✔ Inserted {len(rates)} interest-rate rows.\n")

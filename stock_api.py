@@ -8,8 +8,8 @@ def fetch_stock_prices(ticker: str, filing_date: str) -> List[Dict]:
     if not ticker:
         return []
 
-    end_date = datetime.fromisoformat(filing_date)
-    start_date = end_date - timedelta(days=365)
+    end_date = datetime.fromisoformat(filing_date) + timedelta(days=30)
+    start_date = end_date - timedelta(days=60)
 
     url = f"{STOCKDATA_BASE_URL}/data/eod"
     
