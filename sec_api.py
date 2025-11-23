@@ -40,8 +40,8 @@ def fetch_sec_filings(limit: int = 25) -> List[Dict]:
             '"convertible bonds"'
             ")"
         ),
-        "from": str(offset),       # <-- NOW USING OFFSET
-        "size": str(limit),        # max 100 unless paid plan
+        "from": str(offset),
+        "size": str(limit),
         "sort": [{"filedAt": {"order": "desc"}}]
     }
 
@@ -53,6 +53,7 @@ def fetch_sec_filings(limit: int = 25) -> List[Dict]:
 
     for item in data.get("filings", []):
         description = item.get("formDescription", "").lower()
+        
         if "convertible preferred" in description:
             continue
 

@@ -1,14 +1,10 @@
-# main.py
 from db import create_tables
 from db import create_tables
 from pipeline import load_sec_data, load_and_store_stock_returns, load_interest_rate_data
 from analysis import run_analysis
 
-# ======================================================
-# ===================== MAIN FLOW ======================
-# ======================================================
 def main():
-    print("🔧 Initializing database...")
+    print("Initializing database...")
     create_tables()
 
     # A) Fetch SEC convertible bond filings
@@ -23,7 +19,7 @@ def main():
     # D) Run analysis
     run_analysis()
 
-    print("main.py finished. Uncomment steps to run specific loads.")
+    print("main.py finished.")
 
 if __name__ == "__main__":
     main()

@@ -34,6 +34,7 @@ def fetch_treasury_10y(start_years_back: int = 5, max_rows: int = 25) -> List[Di
 
         try:
             value = float(value_str) if value_str not in (None, ".", "") else None
+    
         except ValueError:
             value = None
 
@@ -43,6 +44,7 @@ def fetch_treasury_10y(start_years_back: int = 5, max_rows: int = 25) -> List[Di
         })
 
     rows = sorted(rows, key=lambda r: datetime.fromisoformat(r["date"]))[:max_rows]
+    
     return rows
 
 

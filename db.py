@@ -7,13 +7,10 @@ def get_connection():
 
 
 def create_tables():
-    """
-    Create all main tables if they don't exist.
-    """
     conn = get_connection()
     cur = conn.cursor()
 
-    # --- COMPANIES ---
+    # COMPANIES
     cur.execute("""
         CREATE TABLE IF NOT EXISTS companies (
             id INTEGER PRIMARY KEY,
@@ -23,7 +20,7 @@ def create_tables():
         )
     """)
 
-    # --- FILINGS ---
+    # FILINGS
     cur.execute("""
         CREATE TABLE IF NOT EXISTS filings (
             id INTEGER PRIMARY KEY,
@@ -36,7 +33,7 @@ def create_tables():
         )
     """)
 
-    # --- STOCK PRICES ---
+    # STOCK PRICES
     cur.execute("""
         CREATE TABLE IF NOT EXISTS stock_returns (
             id INTEGER PRIMARY KEY,
@@ -49,7 +46,7 @@ def create_tables():
         )
     """)
 
-    # --- INTEREST RATES ---
+    # INTEREST RATES
     cur.execute("""
         CREATE TABLE IF NOT EXISTS interest_rates (
             id INTEGER PRIMARY KEY,
@@ -58,7 +55,7 @@ def create_tables():
         )
     """)
 
-    # --- METADATA ---
+    # METADATA
     cur.execute("""
         CREATE TABLE IF NOT EXISTS metadata (
             key TEXT PRIMARY KEY,

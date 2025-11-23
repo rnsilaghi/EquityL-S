@@ -5,16 +5,12 @@ from config import STOCKDATA_API_KEY, STOCKDATA_BASE_URL
 from db import get_connection
 
 def fetch_stock_prices_for_11days(ticker: str, filing_date_str: str) -> List[Dict]:
-    """
-    Fetch EOD prices for the window including filing_date (day 0) through filing_date + 10 calendar days.
-    Returns a list of dicts sorted by date (ascending) with keys: 'date', 'close'.
-    If no data or error, returns [].
-    """
     if not ticker or not filing_date_str:
         return []
 
     try:
         start_dt = datetime.fromisoformat(filing_date_str)
+    
     except Exception:
         return []
 
@@ -31,8 +27,10 @@ def fetch_stock_prices_for_11days(ticker: str, filing_date_str: str) -> List[Dic
     }
 
     resp = requests.get(url, params=params)
+    
     try:
         resp.raise_for_status()
+    
     except Exception:
         return []
 
@@ -40,12 +38,15 @@ def fetch_stock_prices_for_11days(ticker: str, filing_date_str: str) -> List[Dic
     raw = data.get("data", []) if isinstance(data, dict) else []
 
     normalized = []
+    
     for rec in raw:
         d = rec.get("date")
         close = rec.get("close")
+    
         try:
             if d and close is not None:
                 normalized.append({"date": d, "close": float(close)})
+    
         except (TypeError, ValueError):
             continue
 
@@ -58,6 +59,7 @@ def store_stock_prices_to_db(company_id: int, prices: List[Dict]) -> None:
     cur = conn.cursor()
 
     for p in prices:
+    
         cur.execute("""
             INSERT OR IGNORE INTO stock_prices (company_id, date, close, high, low, volume)
             VALUES (?, ?, ?, ?, ?, ?)
