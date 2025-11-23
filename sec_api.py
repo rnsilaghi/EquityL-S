@@ -95,7 +95,7 @@ def store_sec_filings_to_db(filings: List[Dict]) -> None:
         cur.execute("SELECT id FROM companies WHERE cik = ?", (cik,))
         row = cur.fetchone()
         if not row:
-            print(f"⚠️ Could not find company_id for CIK {cik}, skipping filing.")
+            print(f"Could not find company_id for CIK {cik}, skipping filing.")
             continue
         company_id = row[0]
 
