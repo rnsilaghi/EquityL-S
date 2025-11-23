@@ -118,7 +118,7 @@ def plot_filings_by_rate_bucket(bucket_counts):
     labels = list(bucket_counts.keys())
     values = [bucket_counts[b] for b in labels]
 
-    plt.figure(figsize=(8, 5), dpi=140)
+    plt.figure(figsize=(10, 5), dpi=140)
     plt.bar(labels, values)
     plt.title("Number of Convertible Filings by 10Y Treasury Yield Environment")
     plt.xlabel("10Y Yield Bucket at Filing Date")
@@ -168,7 +168,7 @@ def plot_filings_over_time(ym_counts):
     labels = [row[0] for row in ym_counts]
     values = [row[1] for row in ym_counts]
 
-    plt.figure(figsize=(10, 5), dpi=120)
+    plt.figure(figsize=(10, 5), dpi=140)
     plt.plot(labels, values, marker="o")
     plt.title("Convertible Filings Over Time (by Month)")
     plt.xlabel("Year-Month")
@@ -253,7 +253,7 @@ def plot_avg_returns_bar(avg_stats):
     labels = ["Day0 → Day5", "Day5 → Day10"]
     values = [avg0 if avg0 is not None else 0.0, avg5 if avg5 is not None else 0.0]
 
-    plt.figure(figsize=(6, 5), dpi=120)
+    plt.figure(figsize=(10, 5), dpi=140)
     bars = plt.bar(labels, values)
     plt.title("Median Returns Around Convertible Filing")
     plt.ylabel("Median Return (%)")
