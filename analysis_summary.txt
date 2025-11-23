@@ -1,28 +1,16 @@
 === SI 201 Final Project – Analysis Summary ===
 
 1) Filings by 10Y Treasury Yield Environment
-   - High (>=4%): 74 filings (43.5%)
-   - Medium (2-4%): 42 filings (24.7%)
-   - Low (<2%): 54 filings (31.8%)
-   Total filings considered: 170
+   - High (>=4%): 74 filings (49.3%)
+   - Medium (2-4%): 42 filings (28.0%)
+   - Low (<2%): 34 filings (22.7%)
+   Total filings considered: 150
 
 2) Approximate Stock Performance Around Convertible Filings
    No usable stock price data available.
 
 3) Filings Over Time (by Month)
-   - 2020-04: 5 filings
-   - 2020-05: 2 filings
-   - 2020-06: 4 filings
-   - 2020-07: 4 filings
-   - 2020-08: 4 filings
-   - 2020-09: 6 filings
-   - 2020-10: 1 filings
-   - 2020-11: 6 filings
-   - 2020-12: 4 filings
-   - 2021-01: 1 filings
-   - 2021-02: 7 filings
-   - 2021-03: 4 filings
-   - 2021-04: 3 filings
+   - 2021-04: 1 filings
    - 2021-05: 4 filings
    - 2021-06: 3 filings
    - 2021-07: 3 filings

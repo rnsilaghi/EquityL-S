@@ -32,7 +32,6 @@ def create_tables():
             filing_type TEXT,
             filing_url TEXT UNIQUE,
             is_convertible INTEGER,
-            accession_number TEXT UNIQUE,   -- added here
             FOREIGN KEY (company_id) REFERENCES companies(id)
         )
     """)

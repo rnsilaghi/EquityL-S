@@ -51,7 +51,7 @@ def main():
     create_tables()
 
     # A) Fetch SEC convertible bond filings
-    load_sec_data(limit=50)
+    #load_sec_data(limit=50)
 
     # B) Fetch stock prices for companies already in DB
     #load_stock_data()
