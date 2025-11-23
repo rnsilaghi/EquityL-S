@@ -1,3 +1,10 @@
+# Your names: Robert Silaghi 
+# Your student ids: 87125192 
+# Your emails: silaghi@umich.edu
+# Who or what you worked with on this homework (including generative AI like ChatGPT): ChatGPT
+# If you worked with generative AI also add a statement for how you used it.  
+
+
 from db import create_tables
 from db import create_tables
 from pipeline import load_sec_data, load_and_store_stock_returns, load_interest_rate_data
