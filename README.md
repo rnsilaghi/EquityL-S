@@ -1,1 +1,1 @@
-Project that I created with Phu where we used SEC, FRED, and Stock Price APIs to create a database with all convertible bonds in the past five years. One can then analyze issuance frequency across interest rates as well as price returns when convertible bonds are announced in 8-Ks.
+Project that I created with Phu where we used SEC, FRED, and Stock Price APIs to create a database with all primary follow_ons in the past five years. One can then analyze announcement frequency across interest rates as well as price returns when primary follow-on announcements in 8-Ks.

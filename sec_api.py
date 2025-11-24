@@ -21,25 +21,40 @@ def save_offset(offset: int) -> None:
     conn.commit()
     conn.close()
 
+
 def fetch_sec_filings(limit: int = 25) -> List[Dict]:
     if not SEC_API_KEY or SEC_API_KEY.startswith("YOUR_"):
         raise ValueError("SEC_API_KEY missing in config.py")
 
-    # Read where we last left off
+    # Read last processed index
     offset = get_offset()
-
     url = f"{SEC_BASE_URL}?token={SEC_API_KEY}"
 
+    # PRIMARY FOLLOW-ON KEYWORDS
+    include_terms = [
+        '"follow-on offering"',
+        '"primary offering"',
+        '"equity offering"',
+        '"public offering"',
+        '"underwritten offering"',
+        '"registered direct"',
+        '"at-the-market"',
+        '"atm offering"',
+        '"common stock offering"'
+    ]
+
+    exclude_terms = [
+        '"secondary offering"',
+        '"selling shareholder"',
+        '"secondary shares"'
+    ]
+
+    query = 'formType:"8-K" AND (' + " OR ".join(include_terms) + ")"
+    if exclude_terms:
+        query += " AND NOT (" + " OR ".join(exclude_terms) + ")"
+
     payload = {
-        "query": (
-            'formType:"8-K" AND ('
-            '"convertible debt" OR '
-            '"convertible note" OR '
-            '"convertible notes" OR '
-            '"convertible bond" OR '
-            '"convertible bonds"'
-            ")"
-        ),
+        "query": query,
         "from": str(offset),
         "size": str(limit),
         "sort": [{"filedAt": {"order": "desc"}}]
@@ -52,11 +67,6 @@ def fetch_sec_filings(limit: int = 25) -> List[Dict]:
     filings: List[Dict] = []
 
     for item in data.get("filings", []):
-        description = item.get("formDescription", "").lower()
-        
-        if "convertible preferred" in description:
-            continue
-
         raw_name = item.get("companyName", "") or ""
         clean_name = " ".join(w.capitalize() for w in raw_name.split())
 
@@ -67,12 +77,10 @@ def fetch_sec_filings(limit: int = 25) -> List[Dict]:
             "filing_date": item.get("filedAt", "")[:10],
             "filing_type": item.get("formType"),
             "filing_url": item.get("linkToHtml"),
-            "is_convertible": 1
+            "is_pfollow_on": 1   # always 1 because query already filters
         })
 
-    # Save next offset
     save_offset(offset + limit)
-
     return filings
 
 
@@ -85,7 +93,7 @@ def store_sec_filings_to_db(filings: List[Dict]) -> None:
         name = f["company_name"]
         ticker = f.get("ticker")
 
-        # Insert company (ignore if already exists)
+        # Insert company
         cur.execute("""
             INSERT OR IGNORE INTO companies (cik, name, ticker)
             VALUES (?, ?, ?)
@@ -99,17 +107,17 @@ def store_sec_filings_to_db(filings: List[Dict]) -> None:
             continue
         company_id = row[0]
 
-        # Insert filing (ignore if accession_number already exists)
+        # Insert filing
         cur.execute("""
             INSERT OR IGNORE INTO filings 
-            (company_id, filing_date, filing_type, filing_url, is_convertible)
+            (company_id, filing_date, filing_type, filing_url, is_pfollow_on)
             VALUES (?, ?, ?, ?, ?)
         """, (
             company_id,
             f["filing_date"],
             f["filing_type"],
             f["filing_url"],
-            f["is_convertible"]
+            f["is_pfollow_on"]
         ))
 
     conn.commit()
