@@ -106,9 +106,9 @@ def plot_filings_by_rate_bucket(bucket_counts):
     plt.figure(figsize=(10, 5), dpi=140)
     plt.bar(labels, values)
     
-    plt.title("Number of Convertible Filings by 10Y Treasury Yield Environment")
+    plt.title("Number of Primary Follow-On Filings by 10Y Treasury Yield Environment")
     plt.xlabel("10Y Yield Bucket at Filing Date")
-    plt.ylabel("Number of Filings")
+    plt.ylabel("Number of Primary Follow-On Filings")
 
     for i, v in enumerate(values):
         plt.text(i, v + 0.1, str(v), ha="center", va="bottom")
@@ -148,9 +148,9 @@ def plot_filings_over_time(ym_counts):
     plt.figure(figsize=(10, 5), dpi=140)
     plt.plot(labels, values, marker="o")
     
-    plt.title("Convertible Filings Over Time (by Month)")
+    plt.title("Primary Follow-On Filings Over Time (by Month)")
     plt.xlabel("Year-Month")
-    plt.ylabel("Number of Filings")
+    plt.ylabel("Number of Primary Follow-On Filings")
     plt.xticks(rotation=45, ha="right")
 
     for i, v in enumerate(values):
@@ -227,7 +227,7 @@ def plot_avg_returns_bar(avg_stats):
 
     plt.figure(figsize=(10, 5), dpi=140)
     bars = plt.bar(labels, values)
-    plt.title("Median Returns Around Convertible Filing")
+    plt.title("Median Returns Around Primary Follow-On Announcement")
     plt.ylabel("Median Return (%)")
 
     # Annotate bars with values or 'N/A'
@@ -280,7 +280,7 @@ def write_summary_to_file(bucket_counts, avg_stats, ym_counts, filename="analysi
             f.write("   No data available.\n\n")
 
         # Average returns
-        f.write("2) Average Returns Around Convertible Filings\n")
+        f.write("2) Median Returns Around Primary Follow-On Filings\n")
         
         if avg_stats:
             a0 = avg_stats.get("avg_day0_5")

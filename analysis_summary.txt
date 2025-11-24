@@ -1,42 +1,25 @@
 === SI 201 Final Project – Analysis Summary ===
 
 1) Filings by 10Y Treasury Yield Environment
-   - High (>=4%): 74 filings (74.0%)
-   - Medium (2-4%): 26 filings (26.0%)
-   Total filings considered (for rate buckets): 100
+   - High (>=4%): 24 filings (96.0%)
+   - Medium (2-4%): 1 filings (4.0%)
+   Total filings considered (for rate buckets): 25
 
 2) Average Returns Around Convertible Filings
-   - Day0 → Day5: 0.50% (n=36)
-   - Day5 → Day10: 0.00% (n=32)
+   - Day0 → Day5: 0.00% (n=17)
+   - Day5 → Day10: 1.94% (n=16)
 
 3) Filings Over Time (by Month)
-   - 2023-01: 4 filings
-   - 2023-03: 3 filings
-   - 2023-04: 3 filings
-   - 2023-05: 4 filings
-   - 2023-07: 1 filings
-   - 2023-08: 1 filings
-   - 2023-11: 5 filings
-   - 2023-12: 2 filings
-   - 2024-01: 3 filings
-   - 2024-02: 4 filings
-   - 2024-03: 6 filings
-   - 2024-04: 4 filings
-   - 2024-06: 3 filings
-   - 2024-07: 5 filings
-   - 2024-08: 4 filings
-   - 2024-09: 3 filings
-   - 2024-10: 3 filings
-   - 2024-11: 4 filings
    - 2024-12: 2 filings
-   - 2025-01: 3 filings
+   - 2025-01: 2 filings
    - 2025-02: 3 filings
    - 2025-03: 1 filings
-   - 2025-04: 7 filings
-   - 2025-05: 4 filings
+   - 2025-04: 3 filings
+   - 2025-05: 2 filings
    - 2025-06: 2 filings
-   - 2025-07: 5 filings
-   - 2025-08: 4 filings
-   - 2025-10: 2 filings
-   - 2025-11: 5 filings
+   - 2025-07: 2 filings
+   - 2025-08: 2 filings
+   - 2025-09: 2 filings
+   - 2025-10: 3 filings
+   - 2025-11: 1 filings
 
