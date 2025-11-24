@@ -3,7 +3,7 @@ import os
 DB_NAME = "asset_classes.db"
 
 # DO NOT REMOVE ENVIRONMENT VARIABLES :D
-SEC_API_KEY = os.environ.get("SEC_API_KEY", "9INSERT HERE")
+SEC_API_KEY = os.environ.get("SEC_API_KEY", "INSERT HERE")
 STOCKDATA_API_KEY = os.environ.get("STOCKDATA_API_KEY", "INSERT HERE")
 FRED_API_KEY = os.environ.get("FRED_API_KEY", "INSERT HERE")
 
